@@ -1,0 +1,96 @@
+name: tests
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Restore backend tests
+        run: dotnet restore testes/UnitTests/Backend.UnitTests.csproj --ignore-failed-sources
+
+      - name: Run unit tests
+        run: dotnet test testes/UnitTests/Backend.UnitTests.csproj --no-restore --logger "trx;LogFileName=unit-tests.trx"
+
+      - name: Restore integration tests
+        run: dotnet restore testes/IntegrationTests/Backend.IntegrationTests.csproj --ignore-failed-sources
+
+      - name: Run integration tests
+        run: dotnet test testes/IntegrationTests/Backend.IntegrationTests.csproj --no-restore --logger "trx;LogFileName=integration-tests.trx"
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Install frontend deps
+        run: npm install
+
+      - name: Run frontend unit tests
+        run: npm run test:unit
+
+      - name: Run frontend integration tests
+        run: npm run test:integration
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Start API
+        working-directory: .
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+        run: |
+          dotnet run --project api/MinhasFinancas.API/MinhasFinancas.API.csproj --urls http://localhost:5000 > api.log 2>&1 &
+
+      - name: Wait for API
+        working-directory: .
+        run: |
+          for i in {1..60}; do
+            curl -fsS http://localhost:5000/swagger/index.html && exit 0
+            sleep 2
+          done
+          cat api.log
+          exit 1
+
+      - name: Start web app
+        env:
+          VITE_API_URL: http://localhost:5000/api/v1.0
+        run: |
+          npm run dev -- --host localhost > web.log 2>&1 &
+
+      - name: Wait for web app
+        run: |
+          for i in {1..60}; do
+            curl -fsS http://localhost:5173 && exit 0
+            sleep 2
+          done
+          cat web.log
+          exit 1
+
+      - name: Run E2E tests
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:5173
+        run: npm run test:e2e
