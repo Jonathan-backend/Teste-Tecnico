@@ -1,4 +1,4 @@
-using MinhasFinancas.Application.DTOs;
+﻿using MinhasFinancas.Application.DTOs;
 using MinhasFinancas.Domain.Entities;
 using Backend.IntegrationTests.Support;
 
@@ -9,7 +9,7 @@ public class PessoaCascadeDeleteIntegrationTests : SqliteIntegrationTestBase
     [Fact]
     public async Task Deve_apagar_as_transacoes_quando_excluir_pessoa()
     {
-        // arrange
+        
         var pessoa = await PessoaService.CreateAsync(new CreatePessoaDto
         {
             Nome = "Pessoa cascata",
@@ -34,10 +34,10 @@ public class PessoaCascadeDeleteIntegrationTests : SqliteIntegrationTestBase
 
         Assert.Single(DbContext.Transacoes);
 
-        // act
+        
         await PessoaService.DeleteAsync(pessoa.Id);
 
-        // assert
+        
         Assert.Empty(DbContext.Transacoes);
         Assert.Null(await DbContext.Pessoas.FindAsync(pessoa.Id));
     }

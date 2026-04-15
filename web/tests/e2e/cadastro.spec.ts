@@ -31,7 +31,7 @@ test("deve criar categoria e pessoa pela interface", async ({ page, request }) =
     );
   }).toBeTruthy();
 
-  // cria pessoa
+  
   await page.goto("/pessoas");
   await page.getByRole("button", { name: "Adicionar Pessoa" }).click();
   await expect(page.getByRole("heading", { name: "Adicionar Pessoa" })).toBeVisible();

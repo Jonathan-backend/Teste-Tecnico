@@ -1,6 +1,6 @@
 # Piramide de Testes
 
-Esta pasta concentra a estrategia de testes implementada para a aplicacao `Minhas Financas`.
+`Minhas Financas`.
 
 ## Cobertura criada
 
@@ -12,8 +12,8 @@ Esta pasta concentra a estrategia de testes implementada para a aplicacao `Minha
 
 ## Organizacao dos arquivos
 
-- Os nomes dos arquivos foram deixados simples, como `TestePessoa.cs`, `TesteTransacaoIntegracao.cs` e `cadastro.spec.ts`
-- A ideia foi manter uma estrutura facil de entender, com menos abstrações e mais foco na leitura direta
+`TestePessoa.cs`, `TesteTransacaoIntegracao.cs` e `cadastro.spec.ts`
+
 
 ## Regras cobertas
 

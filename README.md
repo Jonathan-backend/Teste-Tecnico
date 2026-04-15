@@ -2,7 +2,7 @@
 
 Este repositório contem apenas os testes automatizados, a documentacao de bugs encontrados e o workflow de CI.
 
-O codigo da aplicacao nao foi alterado. Para executar os testes, use o codigo-fonte original fornecido no enunciado e aplique esta estrutura de arquivos sobre ele, preservando os mesmos caminhos de pasta.
+O codigo da aplicacao nao foi alterado. Para executar os testes, use o codigo-fonte original fornecido no enunciado e apliquei a esta estrutura de arquivos sobre ele, preservando os mesmos caminhos de pasta.
 
 ## Objetivo do teste
 

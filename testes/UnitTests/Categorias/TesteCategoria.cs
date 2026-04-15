@@ -1,4 +1,4 @@
-using Moq;
+﻿using Moq;
 using MinhasFinancas.Application.DTOs;
 using MinhasFinancas.Application.Services;
 using MinhasFinancas.Domain.Entities;
@@ -25,10 +25,10 @@ public class CategoriaServiceAndDomainTests
             Finalidade = Categoria.EFinalidade.Despesa,
         };
 
-        // act
+        
         var result = await service.CreateAsync(dto);
 
-        // assert
+        
         Assert.Equal(dto.Descricao, result.Descricao);
         Assert.Equal(dto.Finalidade, result.Finalidade);
     }
@@ -47,10 +47,10 @@ public class CategoriaServiceAndDomainTests
             Finalidade = finalidade,
         };
 
-        // act
+        
         var permite = categoria.PermiteTipo(tipo);
 
-        // assert
+        
         Assert.Equal(esperado, permite);
     }
 }

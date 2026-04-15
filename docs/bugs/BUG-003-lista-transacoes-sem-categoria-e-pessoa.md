@@ -18,8 +18,11 @@ As colunas deveriam exibir os nomes legíveis da categoria e da pessoa.
 As colunas tendem a aparecer vazias, mesmo com a API já trazendo esses dados.
 
 ## Evidências
-- Hook de mapeamento: [web/src/hooks/useTransacoes.ts](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/hooks/useTransacoes.ts:19)
-- Página de transações: [web/src/pages/TransacoesList.tsx](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/pages/TransacoesList.tsx:43)
+- Evidência observada: o backend já disponibiliza `CategoriaDescricao` e `PessoaNome`, mas esses dados não chegam ao objeto final usado pela grade.
+- Evidência observada: o defeito fica visível na tela de transações, onde as colunas existem mas tendem a permanecer vazias.
+- Evidência observada: o fluxo de transações e conferência visual da tela é exercitado em [web/tests/e2e/transacao.spec.ts](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/tests/e2e/transacao.spec.ts:67).
+- Hook de mapeamento: [web/src/hooks/useTransacoes.ts](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/hooks/useTransacoes.ts:19)
+- Página de transações: [web/src/pages/TransacoesList.tsx](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/pages/TransacoesList.tsx:43)
 
 ## Impacto
 - Severidade: media

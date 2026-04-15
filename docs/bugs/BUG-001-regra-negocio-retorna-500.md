@@ -19,10 +19,16 @@ A API deveria rejeitar a operação com erro de negócio controlado, preservando
 A requisição falha com `500 Internal Server Error`, embora o caso seja uma violação funcional esperada e não uma falha interna do servidor.
 
 ## Evidências
-- Código de domínio: [api/MinhasFinancas.Domain/Entities/Transacao.cs](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.Domain/Entities/Transacao.cs:69)
-- Controller: [api/MinhasFinancas.API/Controllers/TransacoesController.cs](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.API/Controllers/TransacoesController.cs:57)
-- Middleware global: [api/MinhasFinancas.API/Middlewares/ExceptionMiddleware.cs](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.API/Middlewares/ExceptionMiddleware.cs:39)
+- Evidência observada: a falha ocorre em um cenário funcional esperado, mas a resposta final da API é `500 Internal Server Error`.
+- Evidência observada: o fluxo foi exercitado na suíte [web/tests/e2e/regras-negocio.spec.ts](ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/tests/e2e/regras-negocio.spec.ts:97).
+- Evidência observada: há artefato de execução em vídeo em [video.webm](../evidencias/bug-001/video.webm).
+- Código de domínio: [api/MinhasFinancas.Domain/Entities/Transacao.cs](ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.Domain/Entities/Transacao.cs:69)
+- Controller: [api/MinhasFinancas.API/Controllers/TransacoesController.cs]ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.API/Controllers/TransacoesController.cs:57)
+- Middleware global: [api/MinhasFinancas.API/Middlewares/ExceptionMiddleware.cs](ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.API/Middlewares/ExceptionMiddleware.cs:39)
 - Teste automatizado relacionado: `web/tests/e2e/regras-negocio.spec.ts`
+
+## Evidências visuais
+- Vídeo da reprodução: [video.webm](../evidencias/bug-001/video.webm)
 
 ## Impacto
 - Severidade: alta

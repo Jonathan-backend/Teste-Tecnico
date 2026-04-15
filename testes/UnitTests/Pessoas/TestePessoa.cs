@@ -1,4 +1,4 @@
-using Moq;
+﻿using Moq;
 using MinhasFinancas.Application.DTOs;
 using MinhasFinancas.Application.Services;
 using MinhasFinancas.Domain.Entities;
@@ -25,10 +25,10 @@ public class PessoaServiceTests
             DataNascimento = DateTime.Today.AddYears(-30),
         };
 
-        // act
+        
         var result = await service.CreateAsync(dto);
 
-        // assert
+       
         Assert.Equal("Carlos", result.Nome);
         Assert.True(result.Idade >= 18);
         pessoas.Verify(x => x.AddAsync(It.IsAny<Pessoa>()), Times.Once);
@@ -53,10 +53,10 @@ public class PessoaServiceTests
 
         var service = new PessoaService(unitOfWork.Object);
 
-        // act
+        
         var result = await service.GetByIdAsync(pessoa.Id);
 
-        // assert
+        
         Assert.NotNull(result);
         Assert.Equal(pessoa.Nome, result!.Nome);
         Assert.Equal(pessoa.Id, result.Id);
@@ -93,10 +93,10 @@ public class PessoaServiceTests
         var service = new PessoaService(unitOfWork.Object);
         var id = Guid.NewGuid();
 
-        // act
+      
         await service.DeleteAsync(id);
 
-        // assert
+        
         pessoas.Verify(x => x.DeleteAsync(id), Times.Once);
         unitOfWork.Verify(x => x.SaveChangesAsync(), Times.Once);
     }

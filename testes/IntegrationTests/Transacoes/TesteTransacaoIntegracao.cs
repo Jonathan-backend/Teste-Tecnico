@@ -1,4 +1,4 @@
-using MinhasFinancas.Application.DTOs;
+﻿using MinhasFinancas.Application.DTOs;
 using MinhasFinancas.Domain.Entities;
 using Backend.IntegrationTests.Support;
 
@@ -9,7 +9,7 @@ public class TransacaoRulesIntegrationTests : SqliteIntegrationTestBase
     [Fact]
     public async Task Deve_salvar_transacao_valida()
     {
-        // arrange
+        
         var pessoa = await PessoaService.CreateAsync(new CreatePessoaDto
         {
             Nome = "Ana",
@@ -34,7 +34,7 @@ public class TransacaoRulesIntegrationTests : SqliteIntegrationTestBase
 
         var persisted = await DbContext.Transacoes.FindAsync(transacao.Id);
 
-        // assert
+        
         Assert.NotNull(persisted);
         Assert.Equal(450m, persisted!.Valor);
     }
@@ -42,7 +42,7 @@ public class TransacaoRulesIntegrationTests : SqliteIntegrationTestBase
     [Fact]
     public async Task Nao_deve_deixar_menor_cadastrar_receita()
     {
-        // arrange
+        
         var pessoa = await PessoaService.CreateAsync(new CreatePessoaDto
         {
             Nome = "Menor",
@@ -55,7 +55,7 @@ public class TransacaoRulesIntegrationTests : SqliteIntegrationTestBase
             Finalidade = Categoria.EFinalidade.Receita,
         });
 
-        // act + assert
+        
         await Assert.ThrowsAsync<InvalidOperationException>(() => TransacaoService.CreateAsync(new CreateTransacaoDto
         {
             Descricao = "Receita indevida",

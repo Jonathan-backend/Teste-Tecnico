@@ -19,9 +19,12 @@ O usuário deveria ver apenas categorias compatíveis com o tipo da transação,
 O frontend aparenta suportar esse filtro, mas a integração não está completa e o comportamento final não funciona.
 
 ## Evidências
-- Formulário de transação: [web/src/components/molecules/TransacaoForm.tsx](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/components/molecules/TransacaoForm.tsx:81)
-- Select de categoria: [web/src/components/molecules/LazyCategoriaSelect.tsx](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/components/molecules/LazyCategoriaSelect.tsx:13)
-- Endpoint de categorias: [api/MinhasFinancas.API/Controllers/CategoriasController.cs](/abs/path/c:/Users/lordg/Downloads/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.API/Controllers/CategoriasController.cs:32)
+- Evidência observada: trocar o tipo da transação no formulário não produz uma lista de categorias coerente com a finalidade escolhida.
+- Evidência observada: o componente visual aparenta suportar filtragem, mas a integração termina incompleta porque a prop não é repassada e a API não aplica o filtro.
+- Evidência observada: a regra de finalidade também é exercitada em [web/tests/e2e/regras-negocio.spec.ts](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/tests/e2e/regras-negocio.spec.ts:128), o que reforça que a validação de negócio existe, mas a ajuda de interface não.
+- Formulário de transação: [web/src/components/molecules/TransacaoForm.tsx](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/components/molecules/TransacaoForm.tsx:81)
+- Select de categoria: [web/src/components/molecules/LazyCategoriaSelect.tsx](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/web/src/components/molecules/LazyCategoriaSelect.tsx:13)
+- Endpoint de categorias: [api/MinhasFinancas.API/Controllers/CategoriasController.cs](/ExameDesenvolvedorDeTestes/ExameDesenvolvedorDeTestes/api/MinhasFinancas.API/Controllers/CategoriasController.cs:32)
 
 ## Impacto
 - Severidade: media

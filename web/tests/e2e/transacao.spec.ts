@@ -9,7 +9,7 @@ test("deve criar transacao e refletir em transacoes e relatorios", async ({ page
   const descricao = `Transacao Fluxo ${suffix}`;
   const data = "2026-04-13";
 
-  // cria categoria
+  
   await page.goto("/categorias");
   await page.getByRole("button", { name: "Adicionar Categoria" }).click();
   await expect(page.getByRole("heading", { name: "Adicionar Categoria" })).toBeVisible();
@@ -22,7 +22,7 @@ test("deve criar transacao e refletir em transacoes e relatorios", async ({ page
   const categoriaResponse = await categoriaResponsePromise;
   expect(categoriaResponse.ok()).toBeTruthy();
 
-  // cria pessoa
+  
   await page.goto("/pessoas");
   await page.getByRole("button", { name: "Adicionar Pessoa" }).click();
   await expect(page.getByRole("heading", { name: "Adicionar Pessoa" })).toBeVisible();
@@ -35,7 +35,7 @@ test("deve criar transacao e refletir em transacoes e relatorios", async ({ page
   const pessoaResponse = await pessoaResponsePromise;
   expect(pessoaResponse.ok()).toBeTruthy();
 
-  // cria transacao
+  
   await page.goto("/transacoes");
   await page.getByRole("button", { name: "Adicionar Transação" }).click();
   await expect(page.getByRole("heading", { name: "Adicionar Transação" })).toBeVisible();
@@ -62,7 +62,7 @@ test("deve criar transacao e refletir em transacoes e relatorios", async ({ page
   const transacaoCriada = await transacaoResponse.json();
   const pessoaId = String(transacaoCriada.pessoaId ?? transacaoCriada.PessoaId);
 
-  // valida no relatorio
+  
   await page.goto("/totais");
   await expect(page.getByRole("heading", { name: "Totais por Pessoa" })).toBeVisible();
 
